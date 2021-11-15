@@ -36,7 +36,7 @@
 
             switch ($id) {
                 case 1:
-                    if(!file_exists($katalog) || !file_exists($katalog_new))
+                    if(!file_exists($katalog))
                     {
                         mkdir($katalog, 0777);
                         echo 'Katalog stworzony pomyślnie.';
