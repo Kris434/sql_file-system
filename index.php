@@ -5,30 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pliki - PHP</title>
 
-    <style>
-        * {
-            font-size: 20px;
-        }
-        a {
-            color: red;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        a:hover {
-            color: darkred;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        img {
-            height: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -45,7 +22,7 @@
     <section>
     <?php
         $katalog = './katalog';
-        $katalog_new = './katalog_new';
+        $katalog_new = './katalog2';
 
         if(isset($_GET['id']))
         {
@@ -147,17 +124,26 @@
                         if(empty(array_diff(scandir($katalog), array('..', '.'))))
                         {
                             rmdir($katalog);
-                            echo 'Katalog usunięty pomyślnie.';
+                            echo '<p>Katalog ' . $katalog . ' usunięty pomyślnie.</p>';
                         }
                         else
                         {
-                            echo 'Katalog nie jest pusty.';
+                            echo '<p>Katalog ' . $katalog . ' nie jest pusty.</p>';
                         }
                     }
-                    else
-                    {
-                        echo 'Podany katalog nie istnieje.';
-                    }
+
+                    if(file_exists($katalog_new))
+                        {
+                            if(empty(array_diff(scandir($katalog_new), array('..', '.'))))
+                            {
+                                rmdir($katalog_new);
+                                echo 'Katalog ' . $katalog_new . ' usunięty pomyślnie.';
+                            }
+                            else
+                            {
+                                echo 'Katalog ' . $katalog_new . ' nie jest pusty.';
+                            }
+                        }
                     break;
                 
                 default:

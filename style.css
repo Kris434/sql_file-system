@@ -1,0 +1,22 @@
+* {
+    font-size: 20px;
+}
+a {
+    color: red;
+    text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    color: darkred;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    height: 30px;
+}
