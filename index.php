@@ -6,6 +6,9 @@
     <title>Pliki - PHP</title>
 
     <style>
+        * {
+            font-size: 20px;
+        }
         a {
             color: red;
             text-decoration: none;
@@ -14,18 +17,32 @@
         a:hover {
             color: darkred;
         }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        img {
+            height: 30px;
+        }
     </style>
 </head>
 <body>
-    <ul>
-        <li><a href="index.php?id=1">Utwórz katalog</a></li>
-        <li><a href="index.php?id=2">Sprawdź, czy katalog istnieje</a></li>
-        <li><a href="index.php?id=3">Pliki i katalogi z określonej lokalizacji</a></li>
-        <li><a href="index.php?id=4">Czy istnieje plik tekst.txt</a></li>
-        <li><a href="index.php?id=5">Usuń trzy pliki z katalogu</a></li>
-        <li><a href="index.php?id=6">Zmień nazwę katalogu</a></li>
-        <li><a href="index.php?id=7">Usuń katalog</a></li>
-    </ul>
+    <header>
+        <ul>
+            <li><a href="index.php?id=1">Utwórz katalog</a></li>
+            <li><a href="index.php?id=2">Sprawdź, czy katalog istnieje</a></li>
+            <li><a href="index.php?id=3">Pliki i katalogi z określonej lokalizacji</a></li>
+            <li><a href="index.php?id=4">Czy istnieje plik tekst.txt</a></li>
+            <li><a href="index.php?id=5">Usuń trzy pliki z katalogu</a></li>
+            <li><a href="index.php?id=6">Zmień nazwę katalogu</a></li>
+            <li><a href="index.php?id=7">Usuń katalog</a></li>
+        </ul>
+    </header>
+    <section>
     <?php
         $katalog = './katalog';
         $katalog_new = './katalog_new';
@@ -149,5 +166,10 @@
             }
         }
     ?>
+    </section>
+    <footer>
+        <p>Autor: Krzysztof Bicz 4E2</p>
+        <p>Proszę o <i>bardzo</i> dobrą ocenę <img src="nice.png"></p>
+    </footer>
 </body>
 </html>
