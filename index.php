@@ -28,6 +28,7 @@
     </ul>
     <?php
         $katalog = './katalog';
+        $katalog_new = './katalog_new';
 
         if(isset($_GET['id']))
         {
@@ -35,10 +36,14 @@
 
             switch ($id) {
                 case 1:
-                    if(!file_exists($katalog))
+                    if(!file_exists($katalog) || !file_exists($katalog_new))
                     {
-                        mkdir('katalog');
+                        mkdir($katalog, 0777);
                         echo 'Katalog stworzony pomyślnie.';
+                    }
+                    else
+                    {
+                        echo 'Katalog o takiej nazwie już istnieje.';
                     }
                     break;
 
@@ -53,19 +58,93 @@
                     }
                     break;
 
+                case 3:
+                    if(file_exists($katalog))
+                    {
+                        $pliki = array_diff(scandir($katalog), array('..', '.'));
+
+                        if(!empty($pliki))
+                        {
+                            echo 'W katalogu znajdują się pliki: ';
+                            foreach($pliki as $plik)
+                            {
+                                echo "<p>$plik</p>";
+                            }
+                        }
+                        else
+                        {
+                            echo 'Katalog jest pusty.';
+                        }
+                    }
+                    break;
+
+                case 4:
+                    $dir = './katalog/tekst.txt';
+                    
+                    if(file_exists($dir))
+                    {
+                        echo 'Plik <i>tekst.txt</i> istnieje.';
+                    }
+                    else
+                    {
+                        echo 'Plik <i>tekst.txt</i> nie istnieje.';
+                    }
+                    break;
+
+                case 5:
+                    if(file_exists($katalog))
+                    {
+                        $pliki = array_diff(scandir($katalog), array('..', '.'));
+
+                        foreach($pliki as $plik)
+                        {
+                            unlink($katalog . '/' . $plik);
+                        }
+
+                        echo 'Pliki usunięte pomyślnie.';
+                    }
+                    else
+                    {
+                        echo 'Katalog jest pusty.';
+                    }
+                    break;
+
+                case 6:
+                    if(file_exists($katalog))
+                    {
+                        if(file_exists($katalog_new))
+                        {
+                            echo 'Katalog o takiej nazwie już istnieje.';
+                        }
+                        else
+                        {
+                            rename($katalog, $katalog_new);
+                            echo 'Nazwa zmieniona pomyślnie.';
+                        }
+                    }
+                    break;
+
                 case 7:
                     if(file_exists($katalog))
                     {
-                        rmdir($katalog);
-                        echo 'Katalog usunięty pomyślnie.';
+                        if(empty(array_diff(scandir($katalog), array('..', '.'))))
+                        {
+                            rmdir($katalog);
+                            echo 'Katalog usunięty pomyślnie.';
+                        }
+                        else
+                        {
+                            echo 'Katalog nie jest pusty.';
+                        }
                     }
                     else
                     {
                         echo 'Podany katalog nie istnieje.';
                     }
                     break;
+                
                 default:
-                    echo 'Wartość z poza zakresu ¬_¬';
+                    echo 'Wartość spoza zakresu ¬_¬';
                     break;
             }
         }
